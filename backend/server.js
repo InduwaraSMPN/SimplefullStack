@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -6,6 +7,11 @@ const port = process.env.PORT;
 // Middleware
 app.use(cors()); // Allows requests from other origins (like our React app)
 app.use(express.json()); // Parses incoming JSON requests
+
+// Basic route to check if the server is running
+app.get('/', (req, res) => {
+  res.send('Hello WSO2')
+})
 
 // API Endpoint
 app.post('/api/message', (req, res) => {
