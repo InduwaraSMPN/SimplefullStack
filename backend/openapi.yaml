@@ -11,6 +11,7 @@ paths:
     get:
       summary: "Health Check"
       description: "A simple endpoint to verify that the service is running."
+      security: []
       responses:
         '200':
           description: "Service is available."
