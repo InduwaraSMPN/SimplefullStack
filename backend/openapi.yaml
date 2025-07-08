@@ -24,8 +24,7 @@ paths:
     post:
       summary: "Send a Message"
       description: "Receives a JSON object with a message and returns a reply from the server."
-      security:
-        - ApiKeyAuth: []
+      security: []
       requestBody:
         required: true
         content:
@@ -47,11 +46,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 
 components:
-  securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: X-API-Key
   schemas:
     MessageRequest:
       type: object
