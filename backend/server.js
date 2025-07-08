@@ -9,7 +9,7 @@ app.use(cors()); // Allows requests from other origins (like our React app)
 app.use(express.json()); // Parses incoming JSON requests
 
 // Basic route to check if the server is running
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.send('Hello WSO2')
 })
 
