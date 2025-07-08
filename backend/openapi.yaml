@@ -11,7 +11,6 @@ paths:
     get:
       summary: "Health Check"
       description: "A simple endpoint to verify that the service is running."
-      security: []
       responses:
         '200':
           description: "Service is available."
@@ -24,7 +23,6 @@ paths:
     post:
       summary: "Send a Message"
       description: "Receives a JSON object with a message and returns a reply from the server."
-      security: []
       requestBody:
         required: true
         content:
