@@ -1,11 +1,15 @@
-openapi: 3.1.0
+openapi: 3.0.1
 info:
   title: "Simple Message API"
   version: "1.0.0"
   description: "A simple API that receives a message and returns a structured reply."
 servers:
-  - url: http://localhost:8080
-    description: "Local development server"
+- url: "{server}:{port}"
+  variables:
+    port:
+      default: '8080'
+    server:
+      default: http://localhost
 paths:
   /:
     get:
