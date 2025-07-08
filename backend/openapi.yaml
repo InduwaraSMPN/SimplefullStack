@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: "Simple Message API"
+  version: "1.0.0"
+  description: "A simple API that receives a message and returns a structured reply."
+servers:
+  - url: http://localhost:8080
+    description: "Local development server"
+paths:
+  /:
+    get:
+      summary: "Health Check"
+      description: "A simple endpoint to verify that the service is running."
+      responses:
+        '200':
+          description: "Service is available."
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "Hello WSO2"
+  /api/message:
+    post:
+      summary: "Send a Message"
+      description: "Receives a JSON object with a message and returns a reply from the server."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageRequest'
+      responses:
+        '200':
+          description: "Message received successfully."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+        '400':
+          description: "Bad Request - The message field is required."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    MessageRequest:
+      type: object
+      properties:
+        message:
+          type: string
+          description: "The message content to be sent to the server."
+          example: "Hello, this is a test message."
+      required:
+        - message
+
+    MessageResponse:
+      type: object
+      properties:
+        reply:
+          type: string
+          description: "The server's confirmation reply."
+          example: "Server received your message: \"Hello, this is a test message.\""
+        timestamp:
+          type: string
+          format: date-time
+          description: "The ISO 8601 timestamp of when the message was processed."
+          example: "2025-07-08T15:30:00.123Z"
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: "A description of the error that occurred."
+          example: "Message is required."
