@@ -21,10 +21,9 @@ export default function App() {
     setServerResponse(null);
     setError(null);
 
-    // In a real app, this URL would be 'http://localhost:3001/api/message'
-    // We are simulating the fetch call here for demonstration.
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     try {
-      const response = await fetch('http://localhost:3001/api/message', {
+      const response = await fetch(`${backendUrl}/api/message`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
